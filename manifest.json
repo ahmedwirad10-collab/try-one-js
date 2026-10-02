@@ -1,0 +1,43 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4xD61OdFmD4J6oQyErbKkBKfbT/3PV4Bo6/p3QdXe+H/gedESNnOVKxeiMITUls9+PqNhEYzQBNBVblmG/vwYYQltLqBlQx1s0ciJvV1vluBm2bThJI+XwYve3q7rsCJ7G9uNKiOSLMstUCCNCR0dsuseVdSUbe4xlumZ+eSlcYVvq0+cwLWKYqewl11rjQLgtHUxNUp++9GI3UnNZrGG7RGOHpfChCNdpg6jwlgzuusWGv89izKPHYsNq5WtkONtgTz/vo8rmWzTJ8hx+OIIPPUuM/lTVfSP9H6t+3UqDWnCAxqyXrVb94NNsUy0a1s757inYL8xYQFgfkdYRMhywIDAQAB",
+  "name": "Anywear: Live Virtual Try-On",
+  "version": "2.10",
+  "description": "Try on clothes virtually on any fashion website, powered by Decart.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16":  "icons/icon16.png",
+    "32":  "icons/icon32.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Anywear: Virtual Try-on",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "32":  "icons/icon32.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["crash_reports.js", "button-detector.js", "config.js", "revolve.js", "ugg.js", "guess.js", "per_website_garment_filter.js", "widget-core.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["widget.html", "widget-prefetch.js", "widget.bundle.js", "icons/icon16.png", "icons/icon32.png", "icons/icon48.png", "icons/icon128.png", "widget-init.js", "stream-quality.js", "connection-indicator.js", "logger.js", "moderation-overlay.js", "moderation-reset-attempt.js", "recording.js", "billing.js", "config.js", "tryon-preview.gif", "default_video.mp4"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "permissions": ["activeTab", "storage", "identity"],
+  "host_permissions": ["<all_urls>"]
+}
